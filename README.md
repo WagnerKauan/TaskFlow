@@ -1,2 +1,2 @@
-# TaskFlow
-Front-end da aplicação TaskFlow, uma plataforma de gerenciamento de tarefas com autenticação, edição de perfil e controle total sobre o ciclo de vida das tarefas. Interface moderna, responsiva e integrada via JWT com a API desenvolvida em Node.js.
+TaskFlow Front-end — Interface moderna e responsiva para gerenciamento de tarefas. Feito com React, Tailwind CSS e integração via JWT com API Node.js. Login, edição de perfil e controle total das tasks no seu fluxo.
+
