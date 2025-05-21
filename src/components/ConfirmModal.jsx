@@ -1,7 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion";
 
-const ConfirmModal = ({isOpen, onClose, onConfirm, message}) => {
+const ConfirmModal = ({isOpen, onClose, onConfirm, message, load}) => {
 
   if(!isOpen) return null
 
@@ -23,7 +22,11 @@ const ConfirmModal = ({isOpen, onClose, onConfirm, message}) => {
             Cancelar
           </button>
 
-          <button onClick={onConfirm} className="px-4 py-2 text-sm rounded bg-red-600 text-white hover:bg-red-700 cursor-pointer">
+          <button 
+            onClick={onConfirm} 
+            className="px-4 py-2 text-sm rounded bg-red-600 text-white hover:bg-red-700 cursor-pointer disabled:cursor-not-allowed disabled:bg-red-700"
+            disabled={load}
+          >
             Confirmar
           </button>
         </div>

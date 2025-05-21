@@ -15,6 +15,7 @@ const Trash = () => {
   const [alertId, setAlertId] = useState(0)
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [taskToDelete, setTaskToDelete] = useState(null)
+  const [loading, setLoading] = useState(false)
   const token = localStorage.getItem('authToken');
 
   //Funcao para buscar tarefas deletadas
@@ -43,6 +44,7 @@ const Trash = () => {
   async function restoreTask(id) {
     setError('')
     setSuccess('')
+    setLoading(true)
 
     try {
       const res = await api.patch(`/tarefas/restaurar/${id}`, {}, {
@@ -52,11 +54,12 @@ const Trash = () => {
       setSuccess(res.data.message)
       fetchTasks()
       setAlertId(prev => prev + 1)
-
+      setLoading(false)
     } catch (e) {
       console.log(e)
       const message = e.response?.data?.error || 'Erro ao restaurar tarefa.'
       setError(message)
+      setLoading(false)
       setAlertId(prev => prev + 1)
     }
 
@@ -67,20 +70,22 @@ const Trash = () => {
     setAlertId(prev => prev + 1)
     setError('')
     setSuccess('')
-
+    setLoading(true)
+    
     try {
-
+      
       const res = await api.delete(`/tarefas/deletar/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-
+      
       setSuccess(res.data.message)
       fetchTasks()
-
+      setLoading(false)
     } catch (e) {
       console.log(e)
       const message = e.response?.data?.error || 'Erro ao excluir tarefa.'
       setError(message)
+      setLoading(false)
       setAlertId(prev => prev + 1)
     }
   }
@@ -158,7 +163,7 @@ const Trash = () => {
 
       <ul className="space-y-3">
         {filteredTasks.length === 0 ? (
-          <p className="text-gray-500">Nenhuma tarefa encontrada.</p>
+          <p className="text-gray-500">Procurando tarefas...</p>
         ) : (
           filteredTasks.map((task, index) => (
             <motion.li
@@ -209,6 +214,7 @@ const Trash = () => {
         onClose={() => setConfirmOpen(false)}
         onConfirm={confirmDelete}
         message="Tem certeza que deseja excluir esta tarefa de forma definitiva?"
+        load={loading}
       />
     </div>
   )

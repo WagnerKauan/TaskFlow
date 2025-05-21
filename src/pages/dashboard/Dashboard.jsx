@@ -4,11 +4,11 @@ import { Link, Outlet, useNavigate } from "react-router-dom"
 import { ArrowUp, Menu, X } from "lucide-react"
 import Logo from '../../components/Logo'
 import { motion } from "framer-motion"
-import { useUser } from "./utils/UserContext"
+import { useUser } from "../../contexts/UserContext"
 
 
 const Dashboard = () => {
- const {user, updateUser} = useUser()
+  const {user, updateUser} = useUser()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
   const [showScroll, setShowScroll] = useState(false)

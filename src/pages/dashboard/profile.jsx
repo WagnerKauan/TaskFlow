@@ -3,7 +3,7 @@ import api from "../../services/api.js"
 import { ZodError } from 'zod'
 import { editProfileSchema } from '../../schemas/editProfileSchema.js'
 import AlertMessage from "../../components/AlertMessages.jsx"
-import { useUser } from "./utils/UserContext.jsx"
+import { useUser } from "../../contexts/UserContext.jsx"
 import { motion } from "framer-motion"
 import { HiEye, HiEyeOff } from "react-icons/hi" // ← ícones de olho do react-icons
 

@@ -10,8 +10,10 @@ const TaskModal = ({
   setDescription,
   status,
   setStatus,
-  onSave
+  onSave,
+  load,
 }) => {
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -76,8 +78,9 @@ const TaskModal = ({
                 Cancelar
               </button>
               <button
-                className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition cursor-pointer"
+                className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition cursor-pointer disabled:cursor-not-allowed disabled::bg-blue-700"
                 onClick={onSave}
+                disabled={load}
               >
                 {isEditing ? 'Salvar' : 'Criar'}
               </button>

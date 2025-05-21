@@ -9,7 +9,7 @@ export const useUser = () => useContext(UserContext);
 // Componente Provider para envolver a aplicação
 export const UserProvider = ({ children }) => {
   // Estado para armazenar os dados do usuário
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("wagner");
 
   // Função para atualizar os dados do usuário
   const updateUser = (newUser) => setUser(newUser);

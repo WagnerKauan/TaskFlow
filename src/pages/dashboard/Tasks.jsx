@@ -22,6 +22,7 @@ const Tasks = () => {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [alertId, setAlertId] = useState(0)
+  const [loading, setLoading] = useState(false)
   const token = localStorage.getItem('authToken');  
 
 
@@ -50,6 +51,7 @@ const Tasks = () => {
     setAlertId(prev => prev + 1)
     setError('')
     setSuccess('')
+    setLoading(true)
 
     const errorMessage = validateInputs(title, description, status)
 
@@ -85,10 +87,12 @@ const Tasks = () => {
       setDescription('');
       setStatus('pendente');
       fetchTasks();
+      setLoading(false)
     } catch (e) {
       setModalOpen(false)
       const message = e.response?.data?.error || 'Erro inesperado. Tente novamente.'
       setError(message)
+      setLoading(false)
       console.log('Erro ao salvar tarefa.', e);
     }
   };
@@ -212,9 +216,10 @@ const Tasks = () => {
         </select>
       </motion.div>
 
+
       <ul className="space-y-3">
         {filteredTasks.length === 0 ? (
-          <p className="text-gray-500">Nenhuma tarefa encontrada.</p>
+          <p className="text-gray-500">Procurando tarefas...</p>
         ) : (
           filteredTasks.map((task, index) => (
             <motion.li
@@ -273,6 +278,8 @@ const Tasks = () => {
         status={status}
         setStatus={setStatus}
         onSave={handleSave}
+        load={loading}
+        
       />
     </div>
   );

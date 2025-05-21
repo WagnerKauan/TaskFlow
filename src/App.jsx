@@ -6,8 +6,9 @@ import PrivateRoute from "./components/PrivateRoute"
 import Dashboard from "./pages/dashboard/Dashboard"
 import Tasks from "./pages/dashboard/Tasks"
 import Profile from "./pages/dashboard/profile"
-import { UserProvider } from "./pages/dashboard/utils/UserContext"
+import { UserProvider } from "./contexts/UserContext"
 import Trash from './pages/dashboard/Trash'
+import { NotFound } from "./pages/NotFund"
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
               <Route path="Trash" element={<Trash />} />
             </Route>
           </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </UserProvider>
     </Router>
