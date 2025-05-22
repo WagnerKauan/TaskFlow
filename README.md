@@ -32,12 +32,6 @@ O **TaskFlow** é uma aplicação web desenvolvida para ajudar pessoas e equipes
 
 ---
 
-## 📸 Preview do Projeto
-
-<img src="./docs/taskflow.png" alt="TaskFlow Preview" width="700"/>
-
----
-
 ## 🚧 Status
 
 ✅ Projeto **Finalizado e Online!**  
